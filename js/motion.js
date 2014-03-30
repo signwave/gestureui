@@ -6,17 +6,6 @@
 			navigator.mozGetUserMedia || navigator.msGetUserMedia);
 	}
 
-	if (hasGetUserMedia()) {
-		$("#info").hide();
-		$("#message").show();
-	} else {
-		$("#info").show();
-		$("#message").hide();
-		$("#video-demo").show();
-		$("#video-demo")[0].play();
-		return;
-	}
-
 	var webcamError = function(e) {
 		alert('Webcam error!', e);
 	};
@@ -37,25 +26,13 @@
 		//video.src = 'somevideo.webm'; // fallback.
 	}
 
-	var AudioContext = (
-		window.AudioContext ||
-		window.webkitAudioContext ||
-		null
-	);
-
-	var notesPos = [0, 82, 159, 238, 313, 390, 468, 544];
-    
 	var timeOut, lastImageData;
 	var canvasSource = $("#canvas-source")[0];
 	var canvasBlended = $("#canvas-blended")[0];
 
 	var contextSource = canvasSource.getContext('2d');
 	var contextBlended = canvasBlended.getContext('2d');
-
-	var soundContext;
-	var bufferLoader;
-	var notes = [];
-
+    
     var menus = [];
     
 	// mirror video
@@ -70,15 +47,16 @@
 	}
 
 	function finishedLoading() {
-        addMenu('#menu1', 0, 120);
-        addMenu('#menu2', 570, 120);
-        addMenu('#menu3', 0, 320);
-        addMenu('#menu4', 570, 320);
+        addMenu('tileTopLeft', 0, 120);
+        addMenu('tileTopRight', 570, 120);
+        addMenu('tileBottomLeft', 0, 320);
+        addMenu('tileBottomRight', 570, 320);
         
         function addMenu(menu_id, left, top) {   
-            var elem = $(menu_id);
+            var elem = $('#' + menu_id);
             
             menus.push({
+                    name: menu_id,
                     ready: true, 
                     visual: $(menu_id), 
                     area: {
@@ -182,11 +160,13 @@
 			// calculate an average
 			average = Math.round(average / (blendedData.data.length * 0.25));
 			var elem = $(menus[r].visual);
-            if (average > 10) {
-				elem.css('background', 'black');
+            if (average > 100) {
+                console.log(menus[r].name);
+                // open(menus[r].name);
+				//elem.css('background', 'black');
 				// elem.fadeOut();
 			}else {
-                elem.css('background', 'white');
+                // elem.css('background', 'white');
             }
         }
 	}
