@@ -12,14 +12,15 @@ video, #canvas-source {
 }
 
 #menuContainer {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    margin-top:-300px;
+    left: 50%;
+    margin-left:-400px;
     width: 800px;
     height: 600px;
-    margin-left: 19%;
-    margin-top: 3%;
-    background-color:ffffff; 
-    background-image: url('../images/signwave app copy.png');
-    opacity:.90;
+    /* margin-left: 19%;
+    margin-top: 3%; */
 }
 
 #canvas-source {
