@@ -3,7 +3,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-	font-family: Helvetica, Arial, "sans serif";
+	font-family: 'Pontano Sans', sans-serif;
 	font-size: 12px;
 }
 
@@ -52,6 +52,7 @@ video, #canvas-source {
     width: 10em;
     border-radius: 10px;
     -moz-border-radius: 10px;
+    font-family: 'Pontano Sans', sans-serif;
 }
 
 #tileTopLeft {
@@ -65,6 +66,7 @@ video, #canvas-source {
     background-repeat: no-repeat;
     background-size: 60px 40px;
     background-position:right;
+    font-family: 'Pontano Sans', sans-serif;
 }
 
 
@@ -80,6 +82,7 @@ video, #canvas-source {
     background-repeat: no-repeat;
     background-size: 60px 40px;
     background-position:left;
+    font-family: 'Pontano Sans', sans-serif;
 }
 
 #tileBottomLeft {
@@ -93,6 +96,7 @@ video, #canvas-source {
     background-repeat: no-repeat;
     background-size: 60px 40px;
     background-position:right;
+   font-family: 'Pontano Sans', sans-serif;
 }
 
 #tileTopRight {
@@ -106,6 +110,7 @@ video, #canvas-source {
     background-repeat: no-repeat;
     background-size: 60px 40px;
     background-position:left;
+    font-family: 'Pontano Sans', sans-serif;
 }
 
 .tileLabel {
@@ -117,6 +122,7 @@ video, #canvas-source {
     vertical-align: middle;
     font-size: 2em;
     margin-top: 1em;
+    font-family: 'Pontano Sans', sans-serif;
 }
 
 .tileLabelVertical {
@@ -128,4 +134,5 @@ video, #canvas-source {
     vertical-align: middle;
     font-size: 2em;
     margin-top: 5em;
+    font-family: 'Pontano Sans', sans-serif;
 }
