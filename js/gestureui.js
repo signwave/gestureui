@@ -1,11 +1,13 @@
 $(document).ready(function() {
     var originalHeight;
     var originalWidth;
-
+    var originalTop;
+    var originalLeft;
+    
     var openTile;
       
     function open(positionDesc) {
-      
+                          
         var $this = $("#" + positionDesc);
       
         if ($this.hasClass('doNotOpen')) {
@@ -15,6 +17,8 @@ $(document).ready(function() {
         if (originalWidth == null && originalHeight == null) {
             originalHeight = $this.height();
             originalWidth = $this.width();
+            originalTop = $this.position().top;
+            originalLeft = $this.position().left;
         }
       
         $(".tileVertical").each(function(){
@@ -28,12 +32,33 @@ $(document).ready(function() {
         })
       
         $this.css('z-index',1);
-        $this.animate({height:'768px', width:'1024px', top: '0', left: '0'}
-              //complete
+        if ($this.data('side') == 'left') {
+            $this.animate({height:'768px', width:'1024px'}
+                //complete
             , function(){
                 openTile = $this;
-        })
-      
+                if ($this.data('side') == 'left') {
+                    $this.css("background-image", "url('images/handWaveLeft.png')");
+                }
+                else if ($this.data('side') == 'right') {
+                    $this.css("background-image", "url('images/handWaveRight.png')");
+                }
+              })
+        }
+        else if ($this.data('side') == 'right') {
+            $this.animate({height:'768px', width:'1024px', top: '0', left: '0'}
+                //complete
+            , function(){
+                openTile = $this;
+                if ($this.data('side') == 'left') {
+                    $this.css("background-image", "url('images/handWaveLeft.png')");
+                }
+                else if ($this.data('side') == 'right') {
+                    $this.css("background-image", "url('images/handWaveRight.png')");
+                }
+              })
+        }
+          
     }
       
     function closeOpenTile() {
@@ -43,21 +68,38 @@ $(document).ready(function() {
             return;
         }
       
-        openTile.animate({height:originalHeight, width:originalWidth}
-            //complete
-            , function(){
+        openTile.animate({height:originalHeight, width:originalWidth, top: originalTop, left: originalLeft}
 
-            openTile = null;
-            $this = $(this)
-            $(".tileVertical").each(function(){
-                $(this).removeClass('doNotOpen');
-                                    
-                if ($(this).attr('id') != $this.attr('id')) {
-                    $(this).show('slow');
+             //complete
+             , function(){
+             
+                $this = $(this)
+                
+                if ($this.data('side') == 'left') {
+                    openTile.css("background-image", "url('../images/handWaveRight.png')");
+                        $(".tileVertical").each(function(){
+                        $(this).removeClass('doNotOpen');
+                                            
+                        if ($(this).attr('id') != $this.attr('id')) {
+                            $(this).show(200);
+                        }
+
+                    })
                 }
+                else if ($this.data('side') == 'right') {
+                    openTile.css("background-image", "url('../images/handWaveLeft.png')");
+                    $(".tileVertical").each(function(){
+                        $(this).removeClass('doNotOpen');
+                                            
+                        if ($(this).attr('id') != $this.attr('id')) {
+                            $(this).show(200);
+                        }
 
-            })
-        })
+                    })
+                }
+                
+                openTile = null;
+             })
       
     }
       
@@ -65,7 +107,8 @@ $(document).ready(function() {
     *  mouse events - NOT needed for gesture UI
     */
     $(".tileVertical").mouseenter(function(){
-        open($(this).attr('id'))
+        console.log($(this).attr('id'));
+        open($(this).attr('id'));
     })
     $(".tileVertical").mouseleave(function(){
         closeOpenTile();
