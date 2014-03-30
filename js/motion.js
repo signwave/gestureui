@@ -162,7 +162,7 @@
 			var elem = $(menus[r].visual);
             if (average > 100) {
                 console.log(menus[r].name);
-                openTile(menus[r].name);
+                //openTile(menus[r].name);
 				//elem.css('background', 'black');
 				// elem.fadeOut();
 			}else {
