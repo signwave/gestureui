@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
-		<script src="js/jquery-1.8.1.min.js"></script>
-		<script src="js/jquery-ui-1.10.3.custom.js"></script>
+		<script src="jquery-1.8.1.min.js"></script>
+		<script src="jquery-ui-1.10.3.custom.js"></script>
 	<style>
 
     .tileVertical {
@@ -19,7 +19,13 @@
         background-color: blue;
         border: solid #1E90FF;
         opacity: 0.7;
+        background-image: url('images/handWaveRight.png');
+        background-repeat: no-repeat;
+        background-size: 60px 40px;
+        background-position:right;
     }
+    
+    
     
     #tileBottomRight {
         position: absolute;
@@ -28,6 +34,10 @@
         background-color: rgb(255, 133, 0);
         border: solid #FFC91E;
         opacity: 0.7;
+        background-image: url('images/handWaveLeft.png');
+        background-repeat: no-repeat;
+        background-size: 60px 40px;
+        background-position:left;
     }
 
     #tileBottomLeft {
@@ -37,6 +47,10 @@
         background-color: rgb(13, 168, 44);
         border: solid #4FC916;
         opacity: 0.7;
+        background-image: url('images/handWaveRight.png');
+        background-repeat: no-repeat;
+        background-size: 60px 40px;
+        background-position:right;
     }
     
     #tileTopRight {
@@ -46,6 +60,10 @@
         background-color: rgb(193, 12, 238);
         border: solid #CD65E7;
         opacity: 0.7;
+        background-image: url('images/handWaveLeft.png');
+        background-repeat: no-repeat;
+        background-size: 60px 40px;
+        background-position:left;
     }
     
     .tileLabel {
@@ -76,19 +94,19 @@
 
 	<body id="main">
 
-        <div id="tileTopLeft" class="tileVertical">
+        <div id="tileTopLeft" class="tileVertical" data-side="left">
             <div class="tileLabel">Services</div>
         </div>
 
-        <div id="tileBottomRight" class="tileVertical">
+        <div id="tileBottomRight" class="tileVertical" data-side="right">
             <div class="tileLabel">Facilities</div>
         </div>
 
-        <div id="tileBottomLeft" class="tileVertical">
+        <div id="tileBottomLeft" class="tileVertical" data-side="left">
             <div class="tileLabel">Spaces</div>
         </div>
     
-        <div id="tileTopRight" class="tileVertical">
+        <div id="tileTopRight" class="tileVertical" data-side="right">
             <div class="tileLabel">Materials</div>
         </div>
 
@@ -132,6 +150,12 @@
                                           //complete
                                         , function(){
                                             openTile = $this;
+                                            if ($this.data('side') == 'left') {
+                                                $this.css("background-image", "url('images/handWaveLeft.png')");
+                                            }
+                                            else if ($this.data('side') == 'right') {
+                                                $this.css("background-image", "url('images/handWaveRight.png')");
+                                            }
                                           })
                           
                           }
@@ -148,13 +172,19 @@
                                              //complete
                                              , function(){
                                              
-                                                openTile = null;
                                                 $this = $(this)
+                                                if ($this.data('side') == 'left') {
+                                                    openTile.css("background-image", "url('images/handWaveRight.png')");
+                                                }
+                                                else if ($this.data('side') == 'right') {
+                                                    openTile.css("background-image", "url('images/handWaveLeft.png')");
+                                                }
+                                                openTile = null;
                                                 $(".tileVertical").each(function(){
                                                     $(this).removeClass('doNotOpen');
                                                                         
                                                     if ($(this).attr('id') != $this.attr('id')) {
-                                                        $(this).show('slow');
+                                                        $(this).show(200);
                                                     }
 
                                                 })
