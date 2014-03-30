@@ -19,6 +19,8 @@ video, #canvas-source {
     margin-left:-400px;
     width: 800px;
     height: 600px;
+    background-image: url('../images/background.png');
+    opacity: 0.9;
     /* margin-left: 19%;
     margin-top: 3%; */
 }
@@ -61,8 +63,9 @@ video, #canvas-source {
 
 .tileVertical img {
     display: none;
-    padding-left: 20px;
+    padding-left: 70px;
     padding-top: 60px;
+    width: 650px;
 }
 
 #tileTopLeft {

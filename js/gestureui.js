@@ -71,6 +71,9 @@ function openTile(positionDesc) {
                 openedTile = $this;
                 $this.css("background-image", "url('images/handWaveRight.png')");
                 
+                $this.children('.tileLabel').hide();
+                $this.children('img').fadeIn();
+                
                 animating = false;
             })
         }else if (positionDesc == "tileBottomLeft") {
@@ -178,6 +181,7 @@ function closeOpenTile() {
                 console.log(openedTileId);
          })
     }else if (openedTileId == "tileTopRight") {
+        openedTile.children('img').hide();
         openedTile.animate(
             {
                 height:originalHeight,
@@ -192,6 +196,8 @@ function closeOpenTile() {
                 if (openedTile == null) {
                     return;
                 }
+                
+                openedTile.children('.tileLabel').fadeIn();
                 openedTile.css("background-image", "url('images/handWaveLeft.png')");
                 
                 $(".tileVertical").each(function(){
