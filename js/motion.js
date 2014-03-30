@@ -42,7 +42,7 @@
 	var c = 5;
 
 	function initialize() {
-		;
+		// sleep(400);
         finishedLoading();
 	}
 
