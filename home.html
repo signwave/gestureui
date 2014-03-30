@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<script src="js/jquery-1.8.1.min.js"></script>
+		<script src="js/jquery-ui-1.10.3.custom.js"></script>
+	<style>
+
+    .tileVertical {
+        height: 48%;
+        width: 10em;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+    }
+    
+    #tileTopLeft {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-color: blue;
+        border: solid #1E90FF;
+        opacity: 0.7;
+    }
+    
+    #tileBottomRight {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        background-color: rgb(255, 133, 0);
+        border: solid #FFC91E;
+        opacity: 0.7;
+    }
+
+    #tileBottomLeft {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        background-color: rgb(13, 168, 44);
+        border: solid #4FC916;
+        opacity: 0.7;
+    }
+    
+    #tileTopRight {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        background-color: rgb(193, 12, 238);
+        border: solid #CD65E7;
+        opacity: 0.7;
+    }
+    
+    .tileLabel {
+			top: 45%;
+			width: 100%;
+			color: white;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: middle;
+			font-size: 2em;
+            margin-top: 1em;
+		}
+    
+    .tileLabelVertical {
+        top: 45%;
+        width: 100%;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 2em;
+        margin-top: 5em;
+    }
+
+	</style>
+
+	</head>
+
+	<body id="main">
+
+        <div id="tileTopLeft" class="tileVertical">
+            <div class="tileLabel">Services</div>
+        </div>
+
+        <div id="tileBottomRight" class="tileVertical">
+            <div class="tileLabel">Facilities</div>
+        </div>
+
+        <div id="tileBottomLeft" class="tileVertical">
+            <div class="tileLabel">Spaces</div>
+        </div>
+    
+        <div id="tileTopRight" class="tileVertical">
+            <div class="tileLabel">Materials</div>
+        </div>
+
+	</body>
+
+	<script>
+
+		$(document).ready(function(){
+                          
+                          var originalHeight;
+                          var originalWidth;
+                          
+                          var openTile;
+                          
+                          function open(positionDesc) {
+                          
+                            var $this = $("#" + positionDesc);
+                          
+                            if ($this.hasClass('doNotOpen')) {
+                                return
+                            }
+                          
+                            if (originalWidth == null && originalHeight == null) {
+                                originalHeight = $this.height();
+                                originalWidth = $this.width();
+                            }
+                          
+                            $(".tileVertical").each(function(){
+                                $(this).addClass('doNotOpen');
+                                $(this).css('z-index',0);
+                                                    
+                                if ($(this).attr('id') != $this.attr('id')) {
+                                    $(this).hide(2000);
+                                }
+
+                            })
+                          
+                            $this.css('z-index',1);
+                            $this.animate({height:'99%', width:'99%'}
+
+                                          //complete
+                                        , function(){
+                                            openTile = $this;
+                                          })
+                          
+                          }
+                          
+                          function closeOpenTile() {
+                          
+                            var isTileClosed = (openTile == null || openTile == 'undefined');
+                            if (isTileClosed == true) {
+                                return;
+                            }
+                          
+                            openTile.animate({height:originalHeight, width:originalWidth}
+
+                                             //complete
+                                             , function(){
+                                             
+                                                openTile = null;
+                                                $this = $(this)
+                                                $(".tileVertical").each(function(){
+                                                    $(this).removeClass('doNotOpen');
+                                                                        
+                                                    if ($(this).attr('id') != $this.attr('id')) {
+                                                        $(this).show('slow');
+                                                    }
+
+                                                })
+                                             })
+                          
+                          }
+                          
+                          /*
+                           *  mouse events - NOT needed for gesture UI
+                           */
+                          $(".tileVertical").mouseenter(function(){
+                                                        open($(this).attr('id'))
+                                                    })
+                          $(".tileVertical").mouseleave(function(){
+                                                        closeOpenTile();
+                                                    })
+                          
+		})
+	</script>
+
+
+</html>
