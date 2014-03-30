@@ -59,6 +59,12 @@ video, #canvas-source {
     font-family: 'Pontano Sans', sans-serif;
 }
 
+.tileVertical img {
+    display: none;
+    padding-left: 20px;
+    padding-top: 60px;
+}
+
 #tileTopLeft {
     position: absolute;
     top: 0px;
