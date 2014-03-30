@@ -1,3 +1,6 @@
+var screenWidth = '800px';
+var screenHeight = '600px';
+
 var originalHeight;
 var originalWidth;
 var originalTop;
@@ -32,32 +35,31 @@ function openTile(positionDesc) {
   
     $this.css('z-index',1);
     if ($this.data('side') == 'left') {
-        $this.animate({height:'768px', width:'1024px'}
+        $this.animate({height:screenHeight, width:screenWidth}
             //complete
         , function(){
             openedTile = $this;
             if ($this.data('side') == 'left') {
-                $this.css("background-image", "url('images/handWaveLeft.png')");
+                $this.css("background-image", "url('../images/handWaveLeft.png')");
             }
             else if ($this.data('side') == 'right') {
-                $this.css("background-image", "url('images/handWaveRight.png')");
+                $this.css("background-image", "url('../images/handWaveRight.png')");
             }
           })
     }
     else if ($this.data('side') == 'right') {
-        $this.animate({height:'768px', width:'1024px', top: '0', left: '0'}
+        $this.animate({height:screenHeight, width:screenWidth, top: '0', left: '0'}
             //complete
         , function(){
             openedTile = $this;
             if ($this.data('side') == 'left') {
-                $this.css("background-image", "url('images/handWaveLeft.png')");
+                $this.css("background-image", "url('../images/handWaveLeft.png')");
             }
             else if ($this.data('side') == 'right') {
-                $this.css("background-image", "url('images/handWaveRight.png')");
+                $this.css("background-image", "url('../images/handWaveRight.png')");
             }
           })
     }
-      
 }
   
 function closeOpenTile() {
