@@ -91,7 +91,7 @@ function closeOpenTile() {
             }
                        
             if ($this.data('side') == 'left') {
-                openedTile.css("background-image", "url('../images/handWaveRight.png')");
+                openedTile.css("background-image", "url('images/handWaveRight.png')");
                     $(".tileVertical").each(function(){
                     $(this).removeClass('doNotOpen');
                                         
@@ -102,7 +102,7 @@ function closeOpenTile() {
                 })
             }
             else if ($this.data('side') == 'right') {
-                openedTile.css("background-image", "url('../images/handWaveLeft.png')");
+                openedTile.css("background-image", "url('images/handWaveLeft.png')");
                 $(".tileVertical").each(function(){
                     $(this).removeClass('doNotOpen');
                                         
@@ -123,7 +123,7 @@ $(document).ready(function() {
     *  mouse events - NOT needed for gesture UI
     */
     $(".tileVertical").mouseenter(function(){
-        console.log($(this).attr('id'));
+        //console.log($(this).attr('id'));
         openTile($(this).attr('id'));
     })
     $(".tileVertical").mouseleave(function(){
