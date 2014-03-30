@@ -177,12 +177,10 @@
 			average = Math.round(average / (blendedData.data.length * 0.25));
 			var elem = $(menus[r].visual);
             if (average > 100) {
-                console.log(menus[r].name);
-                //openTile(menus[r].name);
-				//elem.css('background', 'black');
-				// elem.fadeOut();
+                // console.log(menus[r].name);
+                openTile(menus[r].name);
 			}else {
-                // elem.css('background', 'white');
+                ;
             }
         }
 	}
